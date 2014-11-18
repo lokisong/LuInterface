@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.mrted.com/" name="FoAdvertWebService" targetNamespace="http://ws.mrted.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema targetNamespace="http://ws.mrted.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="advertisementResult" type="tns:advertisementResultDto" />
+      <xs:element name="advertisementSortingColumns" type="tns:advertisementSortingColumns" />
+      <xs:element name="advertisements" type="tns:advertisementDto" />
+      <xs:element name="availablesearchcriteria" type="tns:availableSearchCriteriaDto" />
+      <xs:element name="countrycriterion" type="tns:countryCriterion" />
+      <xs:element name="criterion" type="tns:criterion" />
+      <xs:element name="customField" type="tns:customField" />
+      <xs:element name="customLovGroup" type="tns:customLovGroup" />
+      <xs:element name="getAdvertisementById" type="tns:getAdvertisementById" />
+      <xs:element name="getAdvertisementByIdResponse" type="tns:getAdvertisementByIdResponse" />
+      <xs:element name="getAdvertisements" type="tns:getAdvertisements" />
+      <xs:element name="getAdvertisementsByPage" type="tns:getAdvertisementsByPage" />
+      <xs:element name="getAdvertisementsByPageResponse" type="tns:getAdvertisementsByPageResponse" />
+      <xs:element name="getAdvertisementsResponse" type="tns:getAdvertisementsResponse" />
+      <xs:element name="getAdvertisementsSortingColumns" type="tns:getAdvertisementsSortingColumns" />
+      <xs:element name="getAdvertisementsSortingColumnsResponse" type="tns:getAdvertisementsSortingColumnsResponse" />
+      <xs:element name="getCriteria" type="tns:getCriteria" />
+      <xs:element name="getCriteriaResponse" type="tns:getCriteriaResponse" />
+      <xs:element name="getSimpleAdvertisements" type="tns:getSimpleAdvertisements" />
+      <xs:element name="getSimpleAdvertisementsByPage" type="tns:getSimpleAdvertisementsByPage" />
+      <xs:element name="getSimpleAdvertisementsByPageResponse" type="tns:getSimpleAdvertisementsByPageResponse" />
+      <xs:element name="getSimpleAdvertisementsResponse" type="tns:getSimpleAdvertisementsResponse" />
+      <xs:element name="getStandardCriteria" type="tns:getStandardCriteria" />
+      <xs:element name="getStandardCriteriaResponse" type="tns:getStandardCriteriaResponse" />
+      <xs:element name="keyValueDTO" type="tns:keyValueDTO" />
+      <xs:element name="lovactivatorscriterion" type="tns:lovWithActivatorsCriterion" />
+      <xs:element name="lovcriterion" type="tns:lovCriterion" />
+      <xs:element name="lovhiercriterion" type="tns:lovHierarchedCriterion" />
+      <xs:element name="organizationcriterion" type="tns:organizationCriterion" />
+      <xs:element name="searchCriteriaSorting" type="tns:searchCriteriaSorting" />
+      <xs:element name="searchcriteria" type="tns:searchCriteriaDto" />
+      <xs:element name="simpleAdvertisementResult" type="tns:simpleAdvertisementResultDto" />
+      <xs:element name="simpleadvertisement" type="tns:simpleAdvertisementDto" />
+      <xs:element name="simpleuserdto" type="tns:simpleUserDto" />
+      <xs:element name="sortingdetails" type="tns:sortingDetailsDto" />
+      <xs:complexType name="getCriteria">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="langCode" type="tns:langCode" />
+          <xs:element minOccurs="0" ref="tns:searchCriteriaSorting" />
+          <xs:element minOccurs="0" form="qualified" name="lovOrders" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="searchCriteriaSorting">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="categoryListsSorting" type="tns:criteriaSortType" />
+          <xs:element minOccurs="0" name="customLovsSorting" type="tns:criteriaSortType" />
+          <xs:element minOccurs="0" name="standardLovsSorting" type="tns:criteriaSortType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getCriteriaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="standardCriteriaWithLovs" type="tns:availableSearchCriteriaDto" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="availableSearchCriteriaDto">
+        <xs:sequence>
+          <xs:element name="adLanguages">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="language" type="tns:criterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="categoryLists">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="categoryList" type="tns:categoryListCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="countries">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="country" type="tns:countryCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="customlovs">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="customLov" type="tns:lovCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="jobNumber" type="xs:string" />
+          <xs:element minOccurs="0" name="keywords" type="xs:string" />
+          <xs:element name="organizations">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="organization" type="tns:organizationCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="postedSince" type="xs:int" />
+          <xs:element name="standardLovs">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="standardLov" type="tns:lovCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="criterion">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="label" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="categoryListCriterion">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:criterion">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="order" type="xs:long" />
+              <xs:element minOccurs="0" name="criteria">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="criterion" type="tns:criterion" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="countryCriterion">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:criterion">
+            <xs:sequence>
+              <xs:element name="regions">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="region" type="tns:criterion" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="lovCriterion">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:criterion">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="order" type="xs:long" />
+              <xs:element minOccurs="0" name="parents">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="parent" type="tns:criterion" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="criteria">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="criterion" type="tns:lovWithActivatorsCriterion" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="lovWithActivatorsCriterion">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:criterion">
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="activators" type="tns:activators" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="activators">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="criterion" type="tns:lovHierarchedCriterion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="lovHierarchedCriterion">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:criterion">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="parent" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="organizationCriterion">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:criterion">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="level" type="xs:long" />
+              <xs:element minOccurs="0" name="suborganizations">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="organization" type="tns:organizationCriterion" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getAdvertisements">
+        <xs:sequence>
+          <xs:element form="qualified" name="firstResult" type="xs:int" />
+          <xs:element form="qualified" name="maxResults" type="xs:int" />
+          <xs:element minOccurs="0" form="qualified" name="searchCriteriaDto" type="tns:searchCriteriaDto" />
+          <xs:element minOccurs="0" form="qualified" name="sortingDetailsDto" type="tns:sortingDetailsDto" />
+          <xs:element minOccurs="0" form="qualified" name="langCode" type="tns:langCode" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="searchCriteriaDto">
+        <xs:sequence>
+          <xs:element name="adLanguages">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="language" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="categoryLists">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="categoryList" type="tns:categoryNameDto" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="contractTypes">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contractType" type="xs:long" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="countries">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="country" type="xs:long" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="customLovs">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="customLovGroup" type="tns:customLovGroup" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="generalApplication" type="xs:boolean" />
+          <xs:element minOccurs="0" name="jobNumber" type="xs:string" />
+          <xs:element minOccurs="0" name="keywords" type="xs:string" />
+          <xs:element name="organizationIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="organizationId" type="xs:long" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="postedSince" type="xs:int" />
+          <xs:element name="regions">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="region" type="xs:long" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="scheduleTypes">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="scheduleType" type="xs:long" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="categoryNameDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="categoryIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="categoryId" type="xs:long" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="order" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="customLovGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="customLov" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sortingDetailsDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="columnName" type="xs:string" />
+          <xs:element minOccurs="0" name="sortType" type="tns:sortType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAdvertisementsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:advertisementResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="advertisementResultDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="advertisements">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="advertisement" type="tns:advertisementDto" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="totalResults" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="advertisementDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="applicationUrl" type="xs:string" />
+          <xs:element name="categoryLists">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="categoryList" type="tns:categoryListCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="comment" type="xs:string" />
+          <xs:element minOccurs="0" name="compensationMaxValue" type="xs:double" />
+          <xs:element minOccurs="0" name="compensationMinValue" type="xs:double" />
+          <xs:element minOccurs="0" name="configurableFields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="configurableField" type="tns:lovCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="customFields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="customField" type="tns:customField" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="customLovs">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="customLov" type="tns:lovCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="dueDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="duration" type="xs:string" />
+          <xs:element minOccurs="0" name="expectedEndDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="expectedStartDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="externalJobNumber" type="xs:string" />
+          <xs:element name="generalApplication" type="xs:boolean" />
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="jobNumber" type="xs:string" />
+          <xs:element minOccurs="0" name="jobTitle" type="xs:string" />
+          <xs:element minOccurs="0" name="keyword" type="xs:string" />
+          <xs:element minOccurs="0" name="language" type="xs:string" />
+          <xs:element minOccurs="0" name="location" type="xs:string" />
+          <xs:element minOccurs="0" name="operationals">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="operational" type="tns:simpleUserDto" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="organizations">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="organization" type="tns:organizationCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="postingEndDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="postingStartDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="postingTargetStatus" type="xs:string" />
+          <xs:element minOccurs="0" name="recruiters">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="recruiter" type="tns:simpleUserDto" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="recruitingCompany" type="xs:string" />
+          <xs:element name="showCompensation" type="xs:boolean" />
+          <xs:element name="showRecruiter" type="xs:boolean" />
+          <xs:element minOccurs="0" name="siteLanguage" type="xs:string" />
+          <xs:element minOccurs="0" name="standardLovs">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="standardLov" type="tns:lovCriterion" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="customField">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="label" type="xs:string" />
+          <xs:element name="order" type="xs:int" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="simpleUserDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="order" type="xs:long" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAdvertisementsByPage">
+        <xs:sequence>
+          <xs:element form="qualified" name="pageNumber" type="xs:int" />
+          <xs:element minOccurs="0" form="qualified" name="searchCriteriaDto" type="tns:searchCriteriaDto" />
+          <xs:element minOccurs="0" form="qualified" name="sortingDetailsDto" type="tns:sortingDetailsDto" />
+          <xs:element minOccurs="0" form="qualified" name="langCode" type="tns:langCode" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAdvertisementsByPageResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:advertisementResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAdvertisementsSortingColumns">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getAdvertisementsSortingColumnsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:advertisementSortingColumns" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="advertisementSortingColumns">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="column" type="tns:keyValueDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="keyValueDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSimpleAdvertisements">
+        <xs:sequence>
+          <xs:element form="qualified" name="firstResult" type="xs:int" />
+          <xs:element form="qualified" name="maxResults" type="xs:int" />
+          <xs:element minOccurs="0" form="qualified" name="searchCriteriaDto" type="tns:searchCriteriaDto" />
+          <xs:element minOccurs="0" form="qualified" name="sortingDetailsDto" type="tns:sortingDetailsDto" />
+          <xs:element minOccurs="0" form="qualified" name="langCode" type="tns:langCode" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSimpleAdvertisementsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:simpleAdvertisementResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="simpleAdvertisementResultDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="simpleAdvertisements">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="simpleAdvertisement" type="tns:simpleAdvertisementDto" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="totalResults" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="simpleAdvertisementDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="jobTitle" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSimpleAdvertisementsByPage">
+        <xs:sequence>
+          <xs:element form="qualified" name="pageNumber" type="xs:int" />
+          <xs:element minOccurs="0" form="qualified" name="searchCriteriaDto" type="tns:searchCriteriaDto" />
+          <xs:element minOccurs="0" form="qualified" name="sortingDetailsDto" type="tns:sortingDetailsDto" />
+          <xs:element minOccurs="0" form="qualified" name="langCode" type="tns:langCode" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSimpleAdvertisementsByPageResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:simpleAdvertisementResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAdvertisementById">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="postingTargetId" type="xs:long" />
+          <xs:element minOccurs="0" form="qualified" name="langCode" type="tns:langCode" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAdvertisementByIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="advertisement" type="tns:advertisementDto" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getStandardCriteria">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="langCode" type="tns:langCode" />
+          <xs:element minOccurs="0" ref="tns:searchCriteriaSorting" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getStandardCriteriaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="standardCriteria" type="tns:availableSearchCriteriaDto" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="langCode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="XX" />
+          <xs:enumeration value="AR" />
+          <xs:enumeration value="BG" />
+          <xs:enumeration value="BR" />
+          <xs:enumeration value="CH" />
+          <xs:enumeration value="CN" />
+          <xs:enumeration value="CS" />
+          <xs:enumeration value="CY" />
+          <xs:enumeration value="DE" />
+          <xs:enumeration value="DN" />
+          <xs:enumeration value="EL" />
+          <xs:enumeration value="EN" />
+          <xs:enumeration value="ET" />
+          <xs:enumeration value="FL" />
+          <xs:enumeration value="FN" />
+          <xs:enumeration value="FR" />
+          <xs:enumeration value="HR" />
+          <xs:enumeration value="HU" />
+          <xs:enumeration value="IS" />
+          <xs:enumeration value="IT" />
+          <xs:enumeration value="JA" />
+          <xs:enumeration value="KO" />
+          <xs:enumeration value="LT" />
+          <xs:enumeration value="LV" />
+          <xs:enumeration value="MY" />
+          <xs:enumeration value="NL" />
+          <xs:enumeration value="NW" />
+          <xs:enumeration value="PL" />
+          <xs:enumeration value="PT" />
+          <xs:enumeration value="RO" />
+          <xs:enumeration value="RU" />
+          <xs:enumeration value="SK" />
+          <xs:enumeration value="SL" />
+          <xs:enumeration value="SP" />
+          <xs:enumeration value="SR" />
+          <xs:enumeration value="SW" />
+          <xs:enumeration value="TH" />
+          <xs:enumeration value="TR" />
+          <xs:enumeration value="TW" />
+          <xs:enumeration value="UA" />
+          <xs:enumeration value="UK" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="criteriaSortType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="LABEL" />
+          <xs:enumeration value="ORDER" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="sortType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NONE" />
+          <xs:enumeration value="ASCENDING" />
+          <xs:enumeration value="DESCENDING" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </types>
+  <message name="FoAdvertWebService_getAdvertisementsResponse">
+    <part name="getAdvertisementsResponse" element="tns:getAdvertisementsResponse" />
+  </message>
+  <message name="FoAdvertWebService_getSimpleAdvertisementsByPage">
+    <part name="getSimpleAdvertisementsByPage" element="tns:getSimpleAdvertisementsByPage" />
+  </message>
+  <message name="FoAdvertWebService_getAdvertisementById">
+    <part name="getAdvertisementById" element="tns:getAdvertisementById" />
+  </message>
+  <message name="FoAdvertWebService_getSimpleAdvertisementsResponse">
+    <part name="getSimpleAdvertisementsResponse" element="tns:getSimpleAdvertisementsResponse" />
+  </message>
+  <message name="FoAdvertWebService_getAdvertisementsSortingColumnsResponse">
+    <part name="getAdvertisementsSortingColumnsResponse" element="tns:getAdvertisementsSortingColumnsResponse" />
+  </message>
+  <message name="FoAdvertWebService_getAdvertisementsByPage">
+    <part name="getAdvertisementsByPage" element="tns:getAdvertisementsByPage" />
+  </message>
+  <message name="FoAdvertWebService_getAdvertisementsSortingColumns">
+    <part name="getAdvertisementsSortingColumns" element="tns:getAdvertisementsSortingColumns" />
+  </message>
+  <message name="FoAdvertWebService_getAdvertisements">
+    <part name="getAdvertisements" element="tns:getAdvertisements" />
+  </message>
+  <message name="FoAdvertWebService_getSimpleAdvertisementsByPageResponse">
+    <part name="getSimpleAdvertisementsByPageResponse" element="tns:getSimpleAdvertisementsByPageResponse" />
+  </message>
+  <message name="FoAdvertWebService_getCriteria">
+    <part name="getCriteria" element="tns:getCriteria" />
+  </message>
+  <message name="FoAdvertWebService_getSimpleAdvertisements">
+    <part name="getSimpleAdvertisements" element="tns:getSimpleAdvertisements" />
+  </message>
+  <message name="FoAdvertWebService_getStandardCriteriaResponse">
+    <part name="getStandardCriteriaResponse" element="tns:getStandardCriteriaResponse" />
+  </message>
+  <message name="FoAdvertWebService_getAdvertisementsByPageResponse">
+    <part name="getAdvertisementsByPageResponse" element="tns:getAdvertisementsByPageResponse" />
+  </message>
+  <message name="FoAdvertWebService_getCriteriaResponse">
+    <part name="getCriteriaResponse" element="tns:getCriteriaResponse" />
+  </message>
+  <message name="FoAdvertWebService_getStandardCriteria">
+    <part name="getStandardCriteria" element="tns:getStandardCriteria" />
+  </message>
+  <message name="FoAdvertWebService_getAdvertisementByIdResponse">
+    <part name="getAdvertisementByIdResponse" element="tns:getAdvertisementByIdResponse" />
+  </message>
+  <portType name="FoAdvertWebService">
+    <operation name="getAdvertisementById" parameterOrder="getAdvertisementById">
+      <input message="tns:FoAdvertWebService_getAdvertisementById" />
+      <output message="tns:FoAdvertWebService_getAdvertisementByIdResponse" />
+    </operation>
+    <operation name="getAdvertisements" parameterOrder="getAdvertisements">
+      <input message="tns:FoAdvertWebService_getAdvertisements" />
+      <output message="tns:FoAdvertWebService_getAdvertisementsResponse" />
+    </operation>
+    <operation name="getAdvertisementsByPage" parameterOrder="getAdvertisementsByPage">
+      <input message="tns:FoAdvertWebService_getAdvertisementsByPage" />
+      <output message="tns:FoAdvertWebService_getAdvertisementsByPageResponse" />
+    </operation>
+    <operation name="getAdvertisementsSortingColumns" parameterOrder="getAdvertisementsSortingColumns">
+      <input message="tns:FoAdvertWebService_getAdvertisementsSortingColumns" />
+      <output message="tns:FoAdvertWebService_getAdvertisementsSortingColumnsResponse" />
+    </operation>
+    <operation name="getCriteria" parameterOrder="getCriteria">
+      <input message="tns:FoAdvertWebService_getCriteria" />
+      <output message="tns:FoAdvertWebService_getCriteriaResponse" />
+    </operation>
+    <operation name="getSimpleAdvertisements" parameterOrder="getSimpleAdvertisements">
+      <input message="tns:FoAdvertWebService_getSimpleAdvertisements" />
+      <output message="tns:FoAdvertWebService_getSimpleAdvertisementsResponse" />
+    </operation>
+    <operation name="getSimpleAdvertisementsByPage" parameterOrder="getSimpleAdvertisementsByPage">
+      <input message="tns:FoAdvertWebService_getSimpleAdvertisementsByPage" />
+      <output message="tns:FoAdvertWebService_getSimpleAdvertisementsByPageResponse" />
+    </operation>
+    <operation name="getStandardCriteria" parameterOrder="getStandardCriteria">
+      <input message="tns:FoAdvertWebService_getStandardCriteria" />
+      <output message="tns:FoAdvertWebService_getStandardCriteriaResponse" />
+    </operation>
+  </portType>
+  <binding name="FoAdvertWebServiceBinding" type="tns:FoAdvertWebService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getAdvertisementById">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getAdvertisements">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getAdvertisementsByPage">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getAdvertisementsSortingColumns">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getCriteria">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getSimpleAdvertisements">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getSimpleAdvertisementsByPage">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getStandardCriteria">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="FoAdvertWebService">
+    <port name="FoAdvertWebServicePort" binding="tns:FoAdvertWebServiceBinding">
+      <soap:address location="https://apiapac.lumesse-talenthub.com/talenthub/FoAdvertWebService" />
+    </port>
+  </service>
+</definitions>

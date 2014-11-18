@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script src="Scripts/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.chained.js" type="text/javascript"></script>
+    <style type="text/css">#example_filter{display:none;}</style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    职位订阅<br /><br />
+        您的姓名:
+        <input type="text" id="cName" name="cName"/>
+        您的邮件地址:
+        <input type="text" id="email" name="email"/>
+        您的手机号:
+        <input type="text" id="cellphone" name="cellphone"/>
+        <div>
+        省份:
+        <select id="country" name="country">
+        <option value="">--</option>
+        </select>
+        城市:
+        <select id="city" name="city">
+        <option value="">--</option>
+        </select>
+        <div id="checkfunction">
+        职能:<br />
+        </div>
+        <div id="checkgrade">
+        职位级别:<br />
+        </div>
+        频率:
+        <select id="frequency" name="city">
+        <option value="ONCE_A_DAY">每天一次</option>
+        <option value="ONCE_A_WEEK">每周一次</option>
+        </select>
+
+        <input type="button" id="sub" value="订阅职位" />
+    </div>
+    <div>
+    
+    </div>
+    </form>
+    <script type="text/javascript" charset="utf-8">
+
+
+        $(document).ready(function () {
+
+            $.ajax({
+                url: "getcriteria_html.aspx?ReqType=1&lovKey=0|1|2|3|4",
+                type: "get",
+                success: function (data) {
+                    $("#checkfunction").append(data.split("|")[0]);
+                    $("#country").append(data.split("|")[1]);
+                    $("#city").append(data.split("|")[2]); $("#city").chained("#country");
+                    $("#checkgrade").append(data.split("|")[4]);
+                }
+            });
+
+
+            function getCheckList(cheklist) {
+                var rs = '';
+                if (cheklist.length >= 1) {
+                    for (i = 0; i < cheklist.length; i++) {
+                        rs += cheklist[i].defaultValue;
+                        if (i < cheklist.length - 1) { rs += ','; }
+                    }
+                }
+                return rs;
+            }
+            $('#sub').click(function () {               
+                $.ajax({
+                    url: "jobsearch.aspx?ReqType=4" + "&name=" + $('#cname').val() + "&cell=" + $('#cellphone').val() + "&email=" + $('#email').val() + "&sSearch_1=" + $('#country').val() + "|" + $('#city').val() + "|" + getCheckList($('#checkgrade :checked')) + "|" + "|" + "|" + getCheckList($('#checkfunction :checked')) + "&frequency=" + $('#frequency').val(),
+                    type: "get",
+                    success: function (data) {
+                    alert(data);
+                    }
+                });
+            });
+
+
+        });
+		</script>
+</body>
+</html>

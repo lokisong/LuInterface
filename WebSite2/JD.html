@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+        <script src="Scripts/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.chained.js" type="text/javascript"></script>
+    <style type="text/css">#example_filter{display:none;}
+        #TextArea1
+        {
+            height: 376px;
+            width: 636px;
+        }
+    </style>
+</head>
+<body>
+<div id="JD">
+    <textarea id="TextArea1" name="S1"></textarea></div>
+    <script type="text/javascript" charset="utf-8">
+//        $(document).ready(function () {
+//            $.ajax({
+//                url: "jobsearch.aspx?" + location.search.substr(1),
+//                type: "post",
+//                success: function (data) {
+//                    $("#JD").append(data);
+//                }
+//            });
+//        });
+        function Button1_onclick() {
+            if (TextArea1.value.indexOf("\n") >= 0) {
+                alert(TextArea1.value.replace("\n","LOKI"));
+            }
+            else {
+                alert(" mm");
+            }
+        }
+
+    </script>
+
+      
+    <p>
+        <input id="Button1" type="button" value="button" onclick="Button1_onclick()" /></p>
+
+      
+</body>
+</html>
